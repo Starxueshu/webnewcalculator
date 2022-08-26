@@ -1,8 +1,9 @@
 # This is a sample Python script.
 #import pickle
-import joblib as jl
 import pandas as pd
 import streamlit as st
+#import joblib as jl
+import numpy
 
 st.header("A novel model to predict early death among bone metastasis patients with unknown primary cancer using "
               "machine learning approaches: an external validated study")
@@ -16,7 +17,7 @@ Radiation = st.sidebar.selectbox("Radiation", ("No/Unknown", "Yes"))
 Chemotherapy = st.sidebar.selectbox("Chemotherapy", ("No/Unknown", "Yes"))
 
 if st.button("Submit"):
-    rf_clf = jl.load("rf_clf_final_round.pkl")
+    rf_clf = numpy.load("rf_clf_final_round.pkl")
     x = pd.DataFrame([[age, liverm, lungm, Radiation, Chemotherapy]],
                      columns=["age", "liverm", "lungm", "Radiation", "Chemotherapy"])
     x = x.replace(["No", "Unknown", "Yes"], [1, 2, 3])
